@@ -1,5 +1,6 @@
 """
     https://www.youtube.com/watch?v=Nqf4PLpMNOU&list=PL-7HuL5PyGEKk8edrhehe9twkci1162Xp
+    https://doc.qt.io/qtforpython/
     Order:
     1. Damage Skill Modifiers
     2. Local Skill Conversion (Items + Skill Modifier)
