@@ -2,7 +2,12 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from grim_calc.utils.rip_items_from_grimtools.item_list_to_sqlite import Item, parse_item, OneHandedSword, Damage
+from grim_calc.utils.rip_items_from_grimtools.item_list_to_sqlite import (
+    Item,
+    parse_item,
+    OneHandedSword,
+    Damage,
+)
 
 
 class MyTestCase(unittest.TestCase):
@@ -33,5 +38,5 @@ class MyTestCase(unittest.TestCase):
         assert expected_item == actual_item
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
