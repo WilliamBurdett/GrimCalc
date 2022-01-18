@@ -28,6 +28,7 @@ conversion_types = [
     "armor_piercing",
 ]
 
+
 @dataclass
 class Conversion:
     conversion_type: str
