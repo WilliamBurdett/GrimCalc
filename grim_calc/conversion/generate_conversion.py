@@ -12,13 +12,13 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from typing import List
-
-
-@dataclass
-class Damage:
-    damage_type: str
-    amount: float
-    has_been_converted: bool = False
+#
+#
+# @dataclass
+# class Damage:
+#     damage_type: str
+#     amount: float
+#     has_been_converted: bool = False
 
 
 conversion_types = [
@@ -38,14 +38,14 @@ class Conversion:
     def perform_conversion(self, Damage) -> List[Damage]:
         pass
 
-
-@dataclass
-class Hit:
-    damages: List[Damage]
-    has_weapon_damage: bool
-
-
-hit = Hit([Damage("physical", 100), Damage("acid", 100)], False)
+#
+# @dataclass
+# class Hit:
+#     damages: List[Damage]
+#     has_weapon_damage: bool
+#
+#
+# hit = Hit([Damage("physical", 100), Damage("acid", 100)], False)
 
 import PySide6.QtCore
 
@@ -54,4 +54,3 @@ print(PySide6.__version__)
 
 # Prints the Qt version used to compile PySide6
 print(PySide6.QtCore.__version__)
-qwe13
