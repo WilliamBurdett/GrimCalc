@@ -11,8 +11,6 @@ from grim_calc.utils.html_utils import get_item_type
 
 
 def build_item_from_tag(div: Tag) -> Union[OneHandedSword, OneHandedAxe, OneHandedMace]:
-    for match in div.findAll("span"):
-        match.unwrap()
     item_type = get_item_type(div)
     type_map = {
         "One-Handed Sword": OneHandedSword,

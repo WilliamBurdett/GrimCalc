@@ -12,12 +12,11 @@ from grim_calc.models.weapons.one_handed import (
     OneHandedSword,
 )
 from grim_calc.models.weapons.weapon_base import Weapon
-from grim_calc.utils.item_builder import build_item_from_tag
 
 
 def open_item_file(file_name: str) -> Tag:
     path = os.path.dirname(os.path.realpath(__file__))
-    with open(os.path.join(path, "item_html", f"{file_name}.html"), "r") as f:
+    with open(os.path.join(path, "item_html_examples", f"{file_name}.html"), "r") as f:
         contents = f.read()
     example_tag = BeautifulSoup(contents, "html.parser")
     return example_tag
@@ -60,8 +59,7 @@ class BuildItemTests(unittest.TestCase):
         expected_attacks_per_second = 1.88
         expected_armor_piercing = 10
 
-        actual_sword = build_item_from_tag(example_tag)
-        assert isinstance(actual_sword, OneHandedSword)
+        actual_sword = OneHandedSword(example_tag)
         assert_item(
             actual_sword, expected_rarity, expected_name, expected_required_attributes
         )
@@ -84,8 +82,7 @@ class BuildItemTests(unittest.TestCase):
         expected_attacks_per_second = 1.86
         expected_armor_piercing = 0
 
-        actual_axe = build_item_from_tag(example_tag)
-        assert isinstance(actual_axe, OneHandedAxe)
+        actual_axe = OneHandedAxe(example_tag)
         assert_item(
             actual_axe, expected_rarity, expected_name, expected_required_attributes
         )
@@ -100,7 +97,7 @@ class BuildItemTests(unittest.TestCase):
     def test_build_item_one_handed_mace_happy_path():
         example_tag = open_item_file("one_handed_mace")
         expected_damages = [
-            Damage(13, 481, "Physical"),
+            Damage(13, 251, "Physical"),
         ]
         expected_rarity = "common"
         expected_name = "Imperial Mallet"
@@ -108,8 +105,7 @@ class BuildItemTests(unittest.TestCase):
         expected_attacks_per_second = 1.64
         expected_armor_piercing = 0
 
-        actual_axe = build_item_from_tag(example_tag)
-        assert isinstance(actual_axe, OneHandedMace)
+        actual_axe = OneHandedMace(example_tag)
         assert_item(
             actual_axe, expected_rarity, expected_name, expected_required_attributes
         )

@@ -15,6 +15,8 @@ class Item:
         self,
         div: Tag,
     ):
+        for match in div.findAll("span"):
+            match.unwrap()
         inner_contents = remove_non_tags(div.div.contents)
         rarity = remove_non_tags(inner_contents[0].contents)[0]["class"][1].split("-")[
             1
