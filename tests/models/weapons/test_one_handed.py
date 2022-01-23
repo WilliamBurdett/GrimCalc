@@ -12,25 +12,7 @@ from grim_calc.models.weapons.one_handed import (
     OneHandedSword,
 )
 from grim_calc.models.weapons.weapon_base import Weapon
-
-
-def open_item_file(file_name: str) -> Tag:
-    path = os.path.dirname(os.path.realpath(__file__))
-    with open(os.path.join(path, "item_html_examples", f"{file_name}.html"), "r") as f:
-        contents = f.read()
-    example_tag = BeautifulSoup(contents, "html.parser")
-    return example_tag
-
-
-def assert_item(
-    actual_item: Item,
-    expected_rarity: str,
-    expected_name: str,
-    expected_required_attributes: Dict[str, int],
-):
-    assert actual_item.rarity == expected_rarity
-    assert actual_item.name == expected_name
-    assert actual_item.required_attributes == expected_required_attributes
+from tests.utils_for_tests import open_item_file
 
 
 def assert_weapon(
@@ -53,16 +35,10 @@ class BuildItemTests(unittest.TestCase):
             Damage(10, 10, "Fire"),
             Damage(5, 10, "Cold"),
         ]
-        expected_rarity = "common"
-        expected_name = "Tarnished Carver"
-        expected_required_attributes = {"Cunning": 83, "Item Level": 8}
         expected_attacks_per_second = 1.88
         expected_armor_piercing = 10
 
         actual_sword = OneHandedSword(example_tag)
-        assert_item(
-            actual_sword, expected_rarity, expected_name, expected_required_attributes
-        )
         assert_weapon(
             actual_sword,
             expected_damages,
@@ -76,16 +52,10 @@ class BuildItemTests(unittest.TestCase):
         expected_damages = [
             Damage(9, 24, "Physical"),
         ]
-        expected_rarity = "common"
-        expected_name = "Scrapmetal Sawblade"
-        expected_required_attributes = {"Physique": 26, "Item Level": 1}
         expected_attacks_per_second = 1.86
         expected_armor_piercing = 0
 
         actual_axe = OneHandedAxe(example_tag)
-        assert_item(
-            actual_axe, expected_rarity, expected_name, expected_required_attributes
-        )
         assert_weapon(
             actual_axe,
             expected_damages,
@@ -99,16 +69,10 @@ class BuildItemTests(unittest.TestCase):
         expected_damages = [
             Damage(13, 251, "Physical"),
         ]
-        expected_rarity = "common"
-        expected_name = "Imperial Mallet"
-        expected_required_attributes = {"Physique": 481, "Item Level": 70}
         expected_attacks_per_second = 1.64
         expected_armor_piercing = 0
 
         actual_axe = OneHandedMace(example_tag)
-        assert_item(
-            actual_axe, expected_rarity, expected_name, expected_required_attributes
-        )
         assert_weapon(
             actual_axe,
             expected_damages,
