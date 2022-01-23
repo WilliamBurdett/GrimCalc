@@ -1,9 +1,9 @@
-from typing import Dict, Union
+from typing import Dict
 
 from bs4 import Tag
 
 from grim_calc.utils.globals import ATTRIBUTES
-from grim_calc.utils.html_utils import remove_non_tags, get_child_tag_containing_class, get_item_type
+from grim_calc.utils.html_utils import remove_non_tags, get_child_tag_containing_class
 
 
 class Item:
@@ -22,7 +22,7 @@ class Item:
         item_description = remove_non_tags(inner_contents[1].contents)
         name = item_description[0].contents[0].contents[0]
         item_requirements = get_child_tag_containing_class(item_description, "item-req")
-        required_attributes: Dict[str,int] = {}
+        required_attributes: Dict[str, int] = {}
         for requirement in remove_non_tags(item_requirements.contents):
             contents = requirement.contents[0]
             for attribute in ATTRIBUTES:
@@ -31,5 +31,5 @@ class Item:
 
         self.rarity = rarity
         self.name = name
-        self.required_attributes: Dict[str,int] = required_attributes
+        self.required_attributes: Dict[str, int] = required_attributes
         self.item_description = item_description

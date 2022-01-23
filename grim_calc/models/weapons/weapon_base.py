@@ -3,8 +3,12 @@ from bs4 import Tag
 from grim_calc.models.damage import Damage
 from grim_calc.models.item_base import Item
 from grim_calc.utils.globals import DIRECT_DAMAGE_TYPES
-from grim_calc.utils.html_utils import remove_non_tags, get_child_tag_containing_class, get_child_tag_containing_string, \
-    strip_non_numeric
+from grim_calc.utils.html_utils import (
+    remove_non_tags,
+    get_child_tag_containing_class,
+    get_child_tag_containing_string,
+    strip_non_numeric,
+)
 
 
 class Weapon(Item):

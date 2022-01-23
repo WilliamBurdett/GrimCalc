@@ -1,4 +1,3 @@
-
 ATTRIBUTES = (
     "Physique",
     "Cunning",

@@ -11,5 +11,3 @@ class Damage:
 @dataclass
 class DotDamage(Damage):
     duration: int
-
-

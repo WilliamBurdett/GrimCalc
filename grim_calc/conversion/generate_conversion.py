@@ -10,8 +10,8 @@
     4. Armor Piercing (Only skills that have % weapon damage)
 """
 from dataclasses import dataclass
-from abc import ABC, abstractmethod
 from typing import List
+
 #
 #
 # @dataclass
@@ -37,6 +37,7 @@ class Conversion:
 
     def perform_conversion(self, Damage) -> List[Damage]:
         pass
+
 
 #
 # @dataclass

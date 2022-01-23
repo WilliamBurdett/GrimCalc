@@ -1,12 +1,16 @@
-import unittest
 import os
+import unittest
 from typing import Dict, List, Union
 
 from bs4 import BeautifulSoup, Tag
 
 from grim_calc.models.damage import Damage
 from grim_calc.models.item_base import Item
-from grim_calc.models.weapons.one_handed import OneHandedMace, OneHandedAxe, OneHandedSword
+from grim_calc.models.weapons.one_handed import (
+    OneHandedMace,
+    OneHandedAxe,
+    OneHandedSword,
+)
 from grim_calc.models.weapons.weapon_base import Weapon
 from grim_calc.utils.item_builder import build_item_from_tag
 
@@ -18,20 +22,27 @@ def open_item_file(file_name: str) -> Tag:
     example_tag = BeautifulSoup(contents, "html.parser")
     return example_tag
 
-def assert_item(actual_item: Item, expected_rarity: str, expected_name: str, expected_required_attributes: Dict[str,int], ):
+
+def assert_item(
+    actual_item: Item,
+    expected_rarity: str,
+    expected_name: str,
+    expected_required_attributes: Dict[str, int],
+):
     assert actual_item.rarity == expected_rarity
     assert actual_item.name == expected_name
     assert actual_item.required_attributes == expected_required_attributes
 
-def assert_weapon(actual_weapon: Weapon,
-expected_damages: List[Damage],
-expected_attacks_per_second: Union[float, int],
-expected_armor_piercing: int,
-                  ):
-    assert  actual_weapon.damages == expected_damages
-    assert  actual_weapon.attacks_per_second == expected_attacks_per_second
-    assert  actual_weapon.armor_piercing == expected_armor_piercing
 
+def assert_weapon(
+    actual_weapon: Weapon,
+    expected_damages: List[Damage],
+    expected_attacks_per_second: Union[float, int],
+    expected_armor_piercing: int,
+):
+    assert actual_weapon.damages == expected_damages
+    assert actual_weapon.attacks_per_second == expected_attacks_per_second
+    assert actual_weapon.armor_piercing == expected_armor_piercing
 
 
 class BuildItemTests(unittest.TestCase):
@@ -51,8 +62,15 @@ class BuildItemTests(unittest.TestCase):
 
         actual_sword = build_item_from_tag(example_tag)
         assert isinstance(actual_sword, OneHandedSword)
-        assert_item(actual_sword, expected_rarity, expected_name, expected_required_attributes)
-        assert_weapon(actual_sword,expected_damages, expected_attacks_per_second, expected_armor_piercing)
+        assert_item(
+            actual_sword, expected_rarity, expected_name, expected_required_attributes
+        )
+        assert_weapon(
+            actual_sword,
+            expected_damages,
+            expected_attacks_per_second,
+            expected_armor_piercing,
+        )
 
     @staticmethod
     def test_build_item_one_handed_axe_happy_path():
@@ -68,8 +86,15 @@ class BuildItemTests(unittest.TestCase):
 
         actual_axe = build_item_from_tag(example_tag)
         assert isinstance(actual_axe, OneHandedAxe)
-        assert_item(actual_axe, expected_rarity, expected_name, expected_required_attributes)
-        assert_weapon(actual_axe,expected_damages, expected_attacks_per_second, expected_armor_piercing)
+        assert_item(
+            actual_axe, expected_rarity, expected_name, expected_required_attributes
+        )
+        assert_weapon(
+            actual_axe,
+            expected_damages,
+            expected_attacks_per_second,
+            expected_armor_piercing,
+        )
 
     @staticmethod
     def test_build_item_one_handed_mace_happy_path():
@@ -85,8 +110,15 @@ class BuildItemTests(unittest.TestCase):
 
         actual_axe = build_item_from_tag(example_tag)
         assert isinstance(actual_axe, OneHandedMace)
-        assert_item(actual_axe, expected_rarity, expected_name, expected_required_attributes)
-        assert_weapon(actual_axe,expected_damages, expected_attacks_per_second, expected_armor_piercing)
+        assert_item(
+            actual_axe, expected_rarity, expected_name, expected_required_attributes
+        )
+        assert_weapon(
+            actual_axe,
+            expected_damages,
+            expected_attacks_per_second,
+            expected_armor_piercing,
+        )
 
 
 if __name__ == "__main__":

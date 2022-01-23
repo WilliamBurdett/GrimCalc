@@ -5,6 +5,7 @@ from bs4 import Tag, NavigableString
 
 NON_DECIMAL = re.compile(r"[^\d.]+")
 
+
 def get_item_type(div: Tag) -> str:
     inner_contents = remove_non_tags(div.div.contents)
     item_description = remove_non_tags(inner_contents[1].contents)
@@ -38,4 +39,3 @@ def get_child_tag_containing_string(contents: List[Tag], string: str) -> Tag:
     for tag in contents:
         if string in str(tag):
             return tag
-

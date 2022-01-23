@@ -2,7 +2,11 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from grim_calc.utils.html_utils import remove_non_tags, get_child_tag_containing_class, get_child_tag_containing_string
+from grim_calc.utils.html_utils import (
+    remove_non_tags,
+    get_child_tag_containing_class,
+    get_child_tag_containing_string,
+)
 
 SIMPLE_HTML = """<div>Hello</div>"""
 

@@ -19,7 +19,6 @@ class OneHandedAxe(Weapon):
         super().__init__(div)
 
 
-
 class OneHandedMace(Weapon):
     def __init__(
         self,

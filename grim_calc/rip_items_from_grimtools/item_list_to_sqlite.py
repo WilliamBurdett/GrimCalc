@@ -1,14 +1,6 @@
-from abc import abstractmethod, ABC
-from dataclasses import dataclass
-from typing import Iterable, Union, List, Tuple, Dict
+from bs4 import BeautifulSoup
 
-from bs4 import BeautifulSoup, Tag, NavigableString
-
-import re
-
-from grim_calc.models.weapons.one_handed import OneHandedSword, OneHandedAxe, OneHandedMace
-from grim_calc.utils.html_utils import get_item_type
-
+from grim_calc.utils.html_utils import remove_non_tags
 
 
 def main():
