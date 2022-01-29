@@ -155,6 +155,7 @@ def get_percent_damage_modifier(
 
 
 ORDER_OF_OPERATIONS = (get_direct_damage_modifiers, get_percent_damage_modifiers)
+# I think conversion comes next?
 
 
 def get_modifiers(
