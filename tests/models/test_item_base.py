@@ -1,19 +1,10 @@
 import unittest
-from typing import Dict
+
+import jsonpickle
 
 from grim_calc.models.item_base import Item
+from grim_calc.utils.serialization import encode
 from tests.utils_for_tests import open_item_file
-
-
-def assert_item(
-    actual_item: Item,
-    expected_rarity: str,
-    expected_name: str,
-    expected_required_attributes: Dict[str, int],
-):
-    assert actual_item.rarity == expected_rarity
-    assert actual_item.name == expected_name
-    assert actual_item.required_attributes == expected_required_attributes
 
 
 class BuildItemTests(unittest.TestCase):
@@ -24,10 +15,29 @@ class BuildItemTests(unittest.TestCase):
         expected_name = "Scrapmetal Sawblade"
         expected_required_attributes = {"Physique": 26, "Item Level": 1}
 
-        actual_sword = Item(example_tag)
-        assert_item(
-            actual_sword, expected_rarity, expected_name, expected_required_attributes
-        )
+        actual_item = Item(example_tag)
+        assert actual_item.rarity == expected_rarity
+        assert actual_item.name == expected_name
+        assert actual_item.required_attributes == expected_required_attributes
+
+    @staticmethod
+    def test_picked_item_has_no_tags():
+        example_tag = open_item_file("basic_item")
+        actual_item = Item(example_tag)
+        expected_pickle = {
+            "py/object": "grim_calc.models.item_base.Item",
+            "py/state": {
+                "rarity": "common",
+                "name": "Scrapmetal Sawblade",
+                "required_attributes": {"Physique": 26, "Item Level": 1},
+                "percent_damages": [],
+                "conversions": [],
+                "attribute_modifiers": [],
+            },
+        }
+        actual_pickle = encode(actual_item)
+        assert expected_pickle == actual_pickle
+
 
 if __name__ == "__main__":
     unittest.main()

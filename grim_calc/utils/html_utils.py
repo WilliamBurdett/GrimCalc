@@ -28,6 +28,10 @@ def remove_non_tags(all_children: List[Union[Tag, NavigableString]]) -> List[Tag
     return children
 
 
+def get_contents(div: Tag) -> List[Tag]:
+    return remove_non_tags(div.contents)
+
+
 def get_child_tag_containing_class(contents: List[Tag], class_name: str) -> Tag:
     for tag in contents:
         if "class" in tag.attrs.keys():
@@ -39,3 +43,8 @@ def get_child_tag_containing_string(contents: List[Tag], string: str) -> Tag:
     for tag in contents:
         if string in str(tag):
             return tag
+
+
+def remove_all_tags_of_type(div: Tag, tag_name: str):
+    for match in div.findAll(tag_name):
+        match.unwrap()

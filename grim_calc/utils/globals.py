@@ -29,3 +29,11 @@ DOT_DAMAGE_TYPES = (
     "Poison",
     "Vitality Decay",
 )
+
+RARITIES = (
+    "common",
+    "magic",
+    "rare",
+    "epic",
+    "legendary",
+)
