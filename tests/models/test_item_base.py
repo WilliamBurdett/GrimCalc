@@ -3,6 +3,7 @@ import unittest
 import jsonpickle
 
 from grim_calc.models.item_base import Item
+from grim_calc.models.modifiers import FlatDamageModifier
 from grim_calc.utils.serialization import encode
 from tests.utils_for_tests import open_item_file
 
@@ -37,6 +38,22 @@ class BuildItemTests(unittest.TestCase):
         }
         actual_pickle = encode(actual_item)
         assert expected_pickle == actual_pickle
+
+    @staticmethod
+    def test_item_get_all_modifiers():
+        example_tag = open_item_file("all_modifiers")
+        expected_rarity = "common"
+        expected_name = "Scrapmetal Sawblade"
+        expected_required_attributes = {"Physique": 26, "Item Level": 1}
+
+        # expected_modifiers = [
+        #     FlatDamageModifier()
+        # ]
+
+        actual_item = Item(example_tag)
+        assert actual_item.rarity == expected_rarity
+        assert actual_item.name == expected_name
+        assert actual_item.required_attributes == expected_required_attributes
 
 
 if __name__ == "__main__":

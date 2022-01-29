@@ -9,4 +9,3 @@ def open_item_file(file_name: str) -> Tag:
         contents = f.read()
     example_tag = BeautifulSoup(contents, "html.parser")
     return example_tag
-
