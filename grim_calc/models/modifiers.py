@@ -154,6 +154,14 @@ def get_percent_damage_modifier(
     return PercentDamageModifier(value, damage_type)
 
 
+def get_global_conversion_modifiers(
+    modifier_divs: List[Tag],
+    div_index: int,
+    flat_damage_types: List[DamageType] = FLAT_DAMAGE_TYPES,
+):
+    pass
+
+
 ORDER_OF_OPERATIONS = (get_direct_damage_modifiers, get_percent_damage_modifiers)
 # I think conversion comes next?
 
