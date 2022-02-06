@@ -3,7 +3,7 @@ import unittest
 import jsonpickle
 
 from grim_calc.models.item_base import Item
-from grim_calc.models.modifiers import FlatDamageModifier
+from grim_calc.models.base_modifier import InstantDamageValueType
 from grim_calc.utils.serialization import encode
 from tests.utils_for_tests import open_item_file
 

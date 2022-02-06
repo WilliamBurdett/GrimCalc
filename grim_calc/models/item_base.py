@@ -1,9 +1,11 @@
 from typing import Dict, List
 
 from bs4 import Tag
+from grim_calc.models.base_modifier import ValueType, get_modifiers
 
-from grim_calc.models.modifiers import Modifier, get_modifiers
-from grim_calc.utils.globals import ATTRIBUTES, FLAT_DAMAGE_TYPES, get_flat_damage_types
+from grim_calc.utils.globals import (
+    ATTRIBUTES,
+)
 from grim_calc.utils.html_utils import (
     get_child_tag_containing_class,
     get_child_tag_containing_string,
@@ -33,7 +35,7 @@ class Item:
         if raw_tooltip_skill_params is not None:
             tooltip_skill_params = get_contents(raw_tooltip_skill_params)
 
-            self.modifiers: List[Modifier] = get_modifiers(tooltip_skill_params)
+            self.modifiers: List[ValueType] = get_modifiers(tooltip_skill_params)
 
     def __getstate__(self):
         """Return state values to be pickled."""

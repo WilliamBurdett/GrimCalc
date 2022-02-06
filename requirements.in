@@ -2,3 +2,4 @@ black
 pyside6
 beautifulsoup4
 jsonpickle
+attrs

@@ -1,6 +1,6 @@
 from bs4 import Tag
+from grim_calc.models.base_modifier import DamageValueType, BaseValue, ValueSingle
 
-from grim_calc.models.modifiers import DamageModifier, BaseValue, ValueSingle
 from grim_calc.models.item_base import Item
 from grim_calc.utils.globals import FLAT_DAMAGE_TYPES
 from grim_calc.utils.html_utils import (
@@ -34,14 +34,14 @@ class Weapon(Item):
                 if len(damage_range) == 1:
                     damage_int = strip_non_numeric(damage_range)
                     damage_value = ValueSingle(damage_int)
-                    self.base_damages.append(DamageModifier(damage_value, damage_name))
+                    self.base_damages.append(DamageValueType(damage_value, damage_name))
                 else:
                     damage_min = strip_non_numeric(damage_range[0])
                     damage_max = strip_non_numeric(damage_range[1])
                     damage_value = BaseValue(
                         damage_min, damage_min, damage_max, damage_max
                     )
-                    self.base_damages.append(DamageModifier(damage_value, damage_name))
+                    self.base_damages.append(DamageValueType(damage_value, damage_name))
 
         self.armor_piercing = 0
         armor_piercing_div = get_child_tag_containing_string(

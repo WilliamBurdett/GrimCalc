@@ -4,7 +4,7 @@ from typing import Dict, List, Union
 
 from bs4 import BeautifulSoup, Tag
 
-from grim_calc.models.modifiers import DamageModifier, BaseValue
+from grim_calc.models.base_modifier import DamageValueType, BaseValue
 from grim_calc.models.item_base import Item
 from grim_calc.models.weapons.one_handed import (
     OneHandedMace,
@@ -37,7 +37,7 @@ class WeaponInitBaseStats(unittest.TestCase):
     def test_gets_damage_range():
         example_tag = open_item_file("common_one_handed_axe")
         expected_damages = [
-            DamageModifier(9, 24, "Physical"),
+            DamageValueType(9, 24, "Physical"),
         ]
 
         actual_axe = OneHandedMace(example_tag)
@@ -47,7 +47,7 @@ class WeaponInitBaseStats(unittest.TestCase):
     def test_gets_damage_non_range():
         example_tag = open_item_file("common_one_handed_mace")
         expected_damages = [
-            DamageModifier(100, 100, "Physical"),
+            DamageValueType(100, 100, "Physical"),
         ]
 
         actual_axe = OneHandedMace(example_tag)
@@ -57,9 +57,9 @@ class WeaponInitBaseStats(unittest.TestCase):
     def test_gets_multiple_damages():
         example_tag = open_item_file("common_one_handed_sword")
         expected_damages = [
-            DamageModifier(12, 34, "Physical"),
-            DamageModifier(10, 10, "Fire"),
-            DamageModifier(5, 10, "Cold"),
+            DamageValueType(12, 34, "Physical"),
+            DamageValueType(10, 10, "Fire"),
+            DamageValueType(5, 10, "Cold"),
         ]
         actual_sword = OneHandedSword(example_tag)
         assert expected_damages == actual_sword.base_damages
@@ -70,9 +70,9 @@ class WeaponInitAdditionalStats(unittest.TestCase):
     def test_gets_multiple_damages():
         example_tag = open_item_file("common_one_handed_scepter")
         expected_damages = [
-            DamageModifier(BaseValue(12, 34), "Physical"),
-            DamageModifier(10, 10, "Fire"),
-            DamageModifier(5, 10, "Cold"),
+            DamageValueType(BaseValue(12, 34), "Physical"),
+            DamageValueType(10, 10, "Fire"),
+            DamageValueType(5, 10, "Cold"),
         ]
         actual_sword = OneHandedSword(example_tag)
         assert expected_damages == actual_sword.base_damages

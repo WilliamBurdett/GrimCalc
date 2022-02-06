@@ -1,5 +1,3 @@
-from typing import Iterable
-
 ATTRIBUTES = (
     "Physique",
     "Cunning",

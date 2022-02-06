@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from grim_calc.models.modifiers import Modifier
+from grim_calc.models.base_modifier import ValueType
 
 
 @dataclass
@@ -10,5 +10,5 @@ class Skill:
 
 
 @dataclass
-class SkillModifier(Modifier):
+class SkillValueType(ValueType):
     skill: Skill
