@@ -5,28 +5,60 @@ from grim_calc.models.modifiers.base_modifier import FlatModifier, BaseModifier
 from grim_calc.models.values import BaseValue, ValueSingle, ValueRange, ValueRanged
 
 
-class InstantDamageModifier(DamageModifier, FlatModifier, BaseModifier):
+class InstantDamageModifier(DamageModifier, FlatModifier):
+    name_to_replace = "InstantDamageModifier"
     value_sizes: List[Type[BaseValue]] = [ValueSingle, ValueRange, ValueRanged]
 
 
+class PhysicalInstantDamageModifier(InstantDamageModifier):
+    pass
 
-class PhysicalDamageModifier(InstantDamageModifier):
+
+class PierceInstantDamageModifier(InstantDamageModifier):
     pass
-class PierceDamageModifier(InstantDamageModifier):
+
+
+class FireInstantDamageModifier(InstantDamageModifier):
     pass
-class FireDamageModifier(InstantDamageModifier):
+
+
+class ColdInstantDamageModifier(InstantDamageModifier):
     pass
-class ColdDamageModifier(InstantDamageModifier):
+
+
+class LightningInstantDamageModifier(InstantDamageModifier):
     pass
-class LightningDamageModifier(InstantDamageModifier):
+
+
+class AcidInstantDamageModifier(InstantDamageModifier):
     pass
-class AcidDamageModifier(InstantDamageModifier):
+
+
+class VitalityInstantDamageModifier(InstantDamageModifier):
     pass
-class VitalityDamageModifier(InstantDamageModifier):
+
+
+class AetherInstantDamageModifier(InstantDamageModifier):
     pass
-class AetherDamageModifier(InstantDamageModifier):
+
+
+class ChaosInstantDamageModifier(InstantDamageModifier):
     pass
-class ChaosDamageModifier(InstantDamageModifier):
+
+
+class ElementalInstantDamageModifier(InstantDamageModifier):
     pass
-class ElementalDamageModifier(InstantDamageModifier):
-    pass
+
+
+ORDER_OF_OPERATIONS = [
+    PhysicalInstantDamageModifier,
+    PierceInstantDamageModifier,
+    FireInstantDamageModifier,
+    ColdInstantDamageModifier,
+    LightningInstantDamageModifier,
+    AcidInstantDamageModifier,
+    VitalityInstantDamageModifier,
+    AetherInstantDamageModifier,
+    ChaosInstantDamageModifier,
+    ElementalInstantDamageModifier,
+]

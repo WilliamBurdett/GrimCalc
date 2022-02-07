@@ -1,42 +1,33 @@
 from typing import List, Type
 
 from grim_calc.models.modifiers.ability import (
-    FlatOffensiveModifier,
-    PercentOffensiveModifier,
-    FlatDefensiveModifier,
-    PercentDefensiveModifier,
+    ORDER_OF_OPERATIONS as ABILITY_ORDER_OF_OPERATIONS,
 )
 from grim_calc.models.modifiers.base_modifier import BaseModifier
 from grim_calc.models.modifiers.energy import (
-    FlatEnergyModifier,
-    PercentEnergyModifier,
-    FlatEnergyRegeneratedModifier,
-    PercentEnergyRegeneratedModifier,
+    ORDER_OF_OPERATIONS as ENERGY_ORDER_OF_OPERATIONS,
 )
 from grim_calc.models.modifiers.health import (
-    FlatHealthModifier,
-    PercentHealthModifier,
-    FlatHealthRegeneratedModifier,
-    PercentHealthRegeneratedModifier,
+    ORDER_OF_OPERATIONS as HEALTH_ORDER_OF_OPERATIONS,
+)
+from grim_calc.models.modifiers.damage_modifiers.instant_damge_modifiers import (
+    ORDER_OF_OPERATIONS as INSTANT_DAMAGE_ORDER_OF_OPERATIONS,
+)
+from grim_calc.models.modifiers.damage_modifiers.duration_damage_modifiers import (
+    ORDER_OF_OPERATIONS as DURATION_DAMAGE_ORDER_OF_OPERATIONS,
+)
+from grim_calc.models.modifiers.damage_modifiers.percent_damage_modifiers import (
+    ORDER_OF_OPERATIONS as PERCENT_DAMAGE_ORDER_OF_OPERATIONS,
 )
 
 ORDER_OF_OPERATIONS = (
-    # InstantDamageValueType,
-    # DotDamageModifier,
-    # PercentDamageValueType,
-    # ConversionValueType,
-    FlatHealthModifier,
-    PercentHealthModifier,
-    FlatHealthRegeneratedModifier,
-    PercentHealthRegeneratedModifier,
-    FlatEnergyModifier,
-    PercentEnergyModifier,
-    FlatEnergyRegeneratedModifier,
-    PercentEnergyRegeneratedModifier,
-    FlatOffensiveModifier,
-    PercentOffensiveModifier,
-    FlatDefensiveModifier,
-    PercentDefensiveModifier,
+    *INSTANT_DAMAGE_ORDER_OF_OPERATIONS,
+    *DURATION_DAMAGE_ORDER_OF_OPERATIONS,
+    *PERCENT_DAMAGE_ORDER_OF_OPERATIONS,
+    # conversion
+    *HEALTH_ORDER_OF_OPERATIONS,
+    *ENERGY_ORDER_OF_OPERATIONS,
+    *ABILITY_ORDER_OF_OPERATIONS,
 )
 
 
@@ -69,9 +60,3 @@ def get_modifiers_from_str(
                 else:
                     break
     return modifiers
-
-
-l = get_modifiers_from_str(
-    ["+25/+55 Health", "Increased Health Regeneration By 50/60%"]
-)
-print(l)

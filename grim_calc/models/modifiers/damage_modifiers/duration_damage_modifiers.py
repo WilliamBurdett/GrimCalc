@@ -9,10 +9,11 @@ from grim_calc.utils.regex import NUMBER_SINGLE
 
 
 class DurationDamageModifier(
-    DamageModifier,
     FlatModifier,
-    BaseModifier,
+    DamageModifier,
 ):
+    name_to_replace = "DurationDamageModifier"
+
     def __init__(self, value: BaseValue, duration: ValueSingle):
         super().__init__(value)
         self.duration = duration
@@ -32,18 +33,41 @@ class DurationDamageModifier(
             )
         )
 
-class InternalTraumaDamageModifier(DurationDamageModifier):
-    needs_damage_for_flat = False
-class BleedingDamageModifier(DurationDamageModifier):
-    pass
-class BurnDamageModifier(DurationDamageModifier):
-    pass
-class FrostburnDamageModifier(DurationDamageModifier):
-    pass
-class ElectrocuteDamageModifier(DurationDamageModifier):
-    pass
-class PoisonDamageModifier(DurationDamageModifier):
-    pass
-class VitalityDecayDamageModifier(DurationDamageModifier):
+
+class InternalTraumaDurationDamageModifier(DurationDamageModifier):
     needs_damage_for_flat = False
 
+
+class BleedingDurationDamageModifier(DurationDamageModifier):
+    pass
+
+
+class BurnDurationDamageModifier(DurationDamageModifier):
+    pass
+
+
+class FrostburnDurationDamageModifier(DurationDamageModifier):
+    pass
+
+
+class ElectrocuteDurationDamageModifier(DurationDamageModifier):
+    pass
+
+
+class PoisonDurationDamageModifier(DurationDamageModifier):
+    pass
+
+
+class VitalityDecayDurationDamageModifier(DurationDamageModifier):
+    needs_damage_for_flat = False
+
+
+ORDER_OF_OPERATIONS = [
+    InternalTraumaDurationDamageModifier,
+    BleedingDurationDamageModifier,
+    BurnDurationDamageModifier,
+    FrostburnDurationDamageModifier,
+    ElectrocuteDurationDamageModifier,
+    PoisonDurationDamageModifier,
+    VitalityDecayDurationDamageModifier,
+]

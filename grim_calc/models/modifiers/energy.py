@@ -46,3 +46,11 @@ class PercentEnergyRegeneratedModifier(PercentModifier, EnergyRegeneratedModifie
     @classmethod
     def get_pattern(cls, value_size: Type[BaseValue], value_options: ValueOptions):
         return cls.get_pattern_value_last(value_size, value_options)
+
+
+ORDER_OF_OPERATIONS = [
+    FlatEnergyModifier,
+    PercentEnergyModifier,
+    FlatEnergyRegeneratedModifier,
+    PercentEnergyRegeneratedModifier,
+]

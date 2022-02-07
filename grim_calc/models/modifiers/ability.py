@@ -38,3 +38,11 @@ class FlatDefensiveModifier(FlatModifier, DefensiveModifier):
 class PercentDefensiveModifier(PercentModifier, DefensiveModifier):
     def __init__(self, value: BaseValue):
         super().__init__(value)
+
+
+ORDER_OF_OPERATIONS = [
+    FlatOffensiveModifier,
+    PercentOffensiveModifier,
+    FlatDefensiveModifier,
+    PercentDefensiveModifier,
+]
